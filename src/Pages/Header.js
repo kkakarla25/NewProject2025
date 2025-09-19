@@ -23,7 +23,7 @@ const Header = () => {
       <div>
         <input type='search' name='serchData' value={serchData} onChange={(e)=>dispatch({type:'Search',payload:e.target.value})}/>
         
-        <button>SearchHere</button>
+        <button>SearchHere for Your wish </button>
         {serchData}
       </div>
       <div style={{display:'flex',gap:'10px',alignItems:'center',paddingRight:'15px'}}>
