@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { useSelector,useDispatch,connect } from 'react-redux'
+import LayoutPage from './Pages/LayoutPage'
 
-function App() {
+const App = (props) => {
+  const storeData=useSelector((state)=>state.count1)
+  const dispatch=useDispatch()
+  const arrData=useSelector((state)=>state.arrData)
+  console.log(arrData)
+  console.log("ConnectState",props.state3)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h3>Hello World!   </h3>
+      <LayoutPage/>
+      <p>Count:{storeData}</p>
+      <button onClick={()=>dispatch({type:'INCR'})}>+</button>
+      <button onClick={()=>dispatch({type:'DECR'})}>-</button>
+      <div>
+        <button onClick={props.increment}>++</button>
+        <button onClick={props.decrement}>--</button>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+const mapStateToProps=(state3)=>{
+  return {state3:state3.count1}
+}
+const mapDispatchToProps=(dispatch)=>{
+  return{
+    increment:()=>dispatch({type:'INCR'}),
+  decrement:()=>dispatch({type:"DECR"})
+  }
+
+}
+export default connect(mapStateToProps,mapDispatchToProps) (App)
