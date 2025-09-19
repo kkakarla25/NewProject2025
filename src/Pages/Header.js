@@ -19,7 +19,7 @@ const Header = () => {
   console.log("filtr",filterData)
   return (
     <div style={{border:"2px solid red",display:'flex',justifyContent:'space-between',textAlign:'center',alignItems:'center',padding:'10px'}}>
-      <h3>OWN CART</h3>
+      <h3> My OWN CART</h3>
       <div>
         <input type='search' name='serchData' value={serchData} onChange={(e)=>dispatch({type:'Search',payload:e.target.value})}/>
         
