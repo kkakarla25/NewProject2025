@@ -12,7 +12,7 @@ const App = () => {
   },[])
   return (
     <div>
-     <h2>New Redux lgggg858585522</h2>
+     <h2>New Redux Nagendra</h2>
      {newData}
      <button onClick={()=>dispatch({type:'INCR'})}>INCR</button>
      <button onClick={()=>dispatch(Login())}>Load</button>
