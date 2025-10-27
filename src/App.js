@@ -1,4 +1,39 @@
-import React from 'react'
+import React,{useEffect} from 'react'
+import { useSelector,useDispatch } from 'react-redux'
+import { increment2,decrement2, Login} from './Redux2/Action'
+
+const App = () => {
+  const newData=useSelector((state)=>state.counter.value)
+  const apidata=useSelector((state)=>state.api.apiArr)
+  console.log(apidata)
+  const dispatch=useDispatch()
+  useEffect(()=>{
+    //dispatch({type:"Loading"})
+  },[])
+  return (
+    <div>
+     <h2>New Redux</h2>
+     {newData}
+     <button onClick={()=>dispatch({type:'INCR'})}>INCR</button>
+     <button onClick={()=>dispatch(Login())}>Load</button>
+     <button onClick={()=>dispatch(decrement2())}>DECR</button>
+     <ol>
+      {apidata?.map((item)=>{
+      return(
+        <li key={item.name}>{item.name}</li>
+     )
+     })}
+     </ol>
+    </div>
+  )
+}
+
+export default App
+
+
+
+
+/* import React from 'react'
 import { useSelector,useDispatch,connect } from 'react-redux'
 import LayoutPage from './Pages/LayoutPage'
 
@@ -10,7 +45,7 @@ const App = (props) => {
   console.log("ConnectState",props.state3)
   return (
     <div>
-      <h3>Hello World!   </h3>
+      <h3>Hello-World!   </h3>
       <LayoutPage/>
       <p>Count:{storeData}</p>
       <button onClick={()=>dispatch({type:'INCR'})}>+</button>
@@ -34,3 +69,4 @@ const mapDispatchToProps=(dispatch)=>{
 
 }
 export default connect(mapStateToProps,mapDispatchToProps) (App)
+ */

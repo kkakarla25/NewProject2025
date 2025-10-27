@@ -41,6 +41,9 @@ switch(action.type){
                 arrData:state.arrData.map((item)=>item.id===action.payload.id? {...item,quantity:item.quantity-1}:item )
             }
         }
+        else if(!existingItem2){
+            return state 
+        }
         else{
             
         let filterData=state.arrData.filter((item)=>item.id!==action.payload.id)

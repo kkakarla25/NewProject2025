@@ -1,0 +1,5 @@
+export const increment2=()=>({type:'Increment'})
+export const decrement2=()=>({type:'DECR'})
+export const Login=(data)=>({type:'Loading2',payload:data})
+export const Sucess=(data2)=>({type:"Success",payload:data2})
+export  const Fail=(data3)=>({type:"Fail",payload:data3})

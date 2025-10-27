@@ -4,6 +4,8 @@ import { useDispatch,useSelector } from 'react-redux'
 const SideBar2 = () => {
     const data=useSelector((state)=>state.api.apiArr)
     const serachData=useSelector((state)=>state.api.searchItem)
+    const load=useSelector((state)=>state.api.loading)
+    console.log("Loading",load)
     console.log("SideSearch",serachData)
     console.log("newArrData5282",data)
     const dispatch=useDispatch()
@@ -20,7 +22,9 @@ const SideBar2 = () => {
    const filterData=!serachData ? data :data?.filter((item)=>item.title.toLowerCase().includes(serachData.toLowerCase()))
    console.log('SideFilter',filterData)
     const fetchData=async()=>{
-        const response=await fetch('https://dummyjson.com/products')
+       dispatch({type:'loading'})
+        try{
+          const response=await fetch('https://dummyjson.com/products')
         const result=await response.json()
         console.log("result",result)
         const newData=result.products
@@ -28,12 +32,16 @@ const SideBar2 = () => {
         dispatch({type:'FetchData',payload:newData})
         /* console.log("Products",result.products)
         setData(result.products) */
-
+        }
+        catch(err){
+         console.log(err)
+        }
     }
     useEffect(()=>{fetchData()},[])
   return (
     <div style={{display:'grid',gridTemplateColumns:'repeat(4 ,1fr)',gridTemplateRows:'repeat(8, 1fr)',gap:'10px',margin:'20px'}}>
-      {filterData?.map((item)=>{
+      {load && <p>Loading...</p>}
+      {!load && filterData?.map((item)=>{
         return(
             <div key={item.id} style={{border:'2px solid red',width:'250px',backgroundColor:'white',padding:'10px',alignItems:'center',textAlign:'center'}}>
                 <img className="img3"src={item.images} alt='image' style={{width:'200px',height:'150px',hover:'250px'}}/>

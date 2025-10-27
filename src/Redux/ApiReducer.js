@@ -1,14 +1,15 @@
-  const initialState={
+ const initialState={
     apiData:"HelloNagendra",
     apiArr:[],
     loading:false,
-    searchItem:'Nagendra'
+    searchItem:''
   }
 
 export const ApiReducer=(state=initialState,action)=>{
     switch(action.type){
         case 'loading':{
             return{
+                ...state,
                 loading:true
             }
         };
